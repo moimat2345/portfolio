@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -12,7 +12,6 @@ void main() {
 }
 `;
 
-// 3D simplex noise for organic gradient movement
 const fragmentShader = `
 uniform float uTime;
 uniform vec2 uMouse;
@@ -22,7 +21,6 @@ uniform vec3 uColorB;
 uniform vec3 uColorC;
 varying vec2 vUv;
 
-// Simplex 3D noise
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
@@ -71,29 +69,20 @@ float snoise(vec3 v){
 
 void main() {
   vec2 uv = vUv;
-
-  // Mouse displacement
   vec2 mouseDisplace = uMouse * 0.15;
-
-  // Audio amplitude boost
   float audioBoost = 1.0 + uAudioLevel * 2.0;
 
-  // Two noise layers
   float n1 = snoise(vec3(uv * 2.0 + mouseDisplace, uTime * 0.15)) * audioBoost;
   float n2 = snoise(vec3(uv * 3.5 - mouseDisplace * 0.5, uTime * 0.1 + 100.0));
 
-  // Mix three colors with noise
   float mix1 = smoothstep(-0.5, 0.5, n1);
   float mix2 = smoothstep(-0.3, 0.7, n2);
 
   vec3 color = mix(uColorA, uColorB, mix1);
   color = mix(color, uColorC, mix2 * 0.6);
 
-  // Vignette
   float vignette = 1.0 - smoothstep(0.3, 1.0, length(uv - 0.5) * 1.2);
   color *= vignette * 0.7 + 0.3;
-
-  // Subtle overall dimming for background feel
   color *= 0.35;
 
   gl_FragColor = vec4(color, 1.0);
@@ -101,12 +90,11 @@ void main() {
 `;
 
 interface GradientMeshProps {
-  mouseX: number;
-  mouseY: number;
+  mouseRef: MutableRefObject<{ x: number; y: number }>;
   audioLevel: number;
 }
 
-export function GradientMesh({ mouseX, mouseY, audioLevel }: GradientMeshProps) {
+export function GradientMesh({ mouseRef, audioLevel }: GradientMeshProps) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const { viewport } = useThree();
 
@@ -125,7 +113,7 @@ export function GradientMesh({ mouseX, mouseY, audioLevel }: GradientMeshProps) 
   useFrame((state) => {
     if (!materialRef.current) return;
     materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
-    materialRef.current.uniforms.uMouse.value.set(mouseX, mouseY);
+    materialRef.current.uniforms.uMouse.value.set(mouseRef.current.x, mouseRef.current.y);
     materialRef.current.uniforms.uAudioLevel.value = audioLevel;
   });
 

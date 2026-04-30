@@ -13,10 +13,13 @@ interface Particle {
   hue: number;
 }
 
+const PARTICLE_COUNT = 25;
+const CONNECTION_DIST = 100;
+
 export function FloatingParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = useReducedMotionContext();
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: -9999, y: -9999 });
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -27,60 +30,71 @@ export function FloatingParticles() {
     if (!ctx) return;
 
     let animId: number;
+    let dpr = Math.min(window.devicePixelRatio, 2);
     const particles: Particle[] = [];
-    const PARTICLE_COUNT = 60;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
     };
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
-    // Init particles
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.3 + 0.05,
-        hue: Math.random() > 0.5 ? 270 : 190, // violet or cyan
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.2 + 0.05,
+        hue: Math.random() > 0.5 ? 270 : 190,
       });
     }
 
+    const w = () => window.innerWidth;
+    const h = () => window.innerHeight;
+
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w(), h());
+
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
 
       for (const p of particles) {
-        // Mouse repulsion
-        const dx = p.x - mouseRef.current.x;
-        const dy = p.y - mouseRef.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const force = (150 - dist) / 150;
-          p.vx += (dx / dist) * force * 0.05;
-          p.vy += (dy / dist) * force * 0.05;
+        // Mouse repulsion — only if mouse is on screen
+        if (mx > 0 && my > 0) {
+          const dx = p.x - mx;
+          const dy = p.y - my;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < 22500) { // 150²
+            const dist = Math.sqrt(distSq);
+            const force = (150 - dist) / 150;
+            p.vx += (dx / dist) * force * 0.03;
+            p.vy += (dy / dist) * force * 0.03;
+          }
         }
 
-        // Damping
-        p.vx *= 0.99;
-        p.vy *= 0.99;
-
+        p.vx *= 0.995;
+        p.vy *= 0.995;
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.x < 0) p.x = w();
+        if (p.x > w()) p.x = 0;
+        if (p.y < 0) p.y = h();
+        if (p.y > h()) p.y = 0;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -88,18 +102,19 @@ export function FloatingParticles() {
         ctx.fill();
       }
 
-      // Draw connections between close particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
+      // Connections — batch into single path per opacity level
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < CONNECTION_DIST * CONNECTION_DIST) {
+            const dist = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.06 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(139, 92, 246, ${0.04 * (1 - dist / CONNECTION_DIST)})`;
             ctx.stroke();
           }
         }
@@ -122,7 +137,7 @@ export function FloatingParticles() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[1]"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 }

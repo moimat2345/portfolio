@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { useMagnetic } from "@/hooks/useMagnetic";
-import { useCursorContext } from "@/components/providers/CursorProvider";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -22,7 +21,6 @@ export function MagneticButton({
   download,
 }: MagneticButtonProps) {
   const { ref, handleMouseLeave } = useMagnetic<HTMLAnchorElement & HTMLButtonElement>();
-  const { setIsHovering } = useCursorContext();
 
   const baseStyles =
     "relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 will-change-transform";
@@ -39,11 +37,7 @@ export function MagneticButton({
   const props = {
     ref,
     className: cn(baseStyles, variants[variant], className),
-    onMouseEnter: () => setIsHovering(true),
-    onMouseLeave: () => {
-      setIsHovering(false);
-      handleMouseLeave();
-    },
+    onMouseLeave: handleMouseLeave,
   };
 
   if (href) {

@@ -17,9 +17,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* scroll-behavior handled by Lenis — no CSS smooth scroll */
 
 body {
   color: var(--text);
@@ -73,8 +71,8 @@ body {
 /* Glass card base */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
 }
 

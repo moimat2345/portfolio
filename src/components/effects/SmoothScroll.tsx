@@ -2,7 +2,11 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function SmoothScroll() {
   const reducedMotion = useReducedMotionContext();
@@ -11,19 +15,24 @@ export function SmoothScroll() {
     if (reducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
     });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
 
-    return () => lenis.destroy();
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    };
   }, [reducedMotion]);
 
   return null;

@@ -1,10 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
-import { useCursorContext } from "@/components/providers/CursorProvider";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -14,53 +12,60 @@ interface TiltCardProps {
 
 export function TiltCard({ children, className, glareColor = "rgba(139,92,246,0.15)" }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotionContext();
-  const { setIsHovering } = useCursorContext();
-  const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50 });
+  const rafRef = useRef(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (reducedMotion || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setTransform({
-      rotateX: (y - 0.5) * -20,
-      rotateY: (x - 0.5) * 20,
-      glareX: x * 100,
-      glareY: y * 100,
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const el = ref.current;
+    const glare = glareRef.current;
+    if (!el || !glare || reducedMotion) return;
+
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      el.style.transform = `perspective(800px) rotateX(${(y - 0.5) * -12}deg) rotateY(${(x - 0.5) * 12}deg)`;
+      glare.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, ${glareColor}, transparent 60%)`;
     });
-  };
+  }, [reducedMotion, glareColor]);
 
-  const handleMouseLeave = () => {
-    setTransform({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50 });
-    setIsHovering(false);
-  };
+  const handleMouseLeave = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reducedMotion) return;
+    el.addEventListener("mousemove", handleMouseMove, { passive: true });
+    el.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, [handleMouseMove, handleMouseLeave, reducedMotion]);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={cn("glass rounded-2xl p-6 relative overflow-hidden transition-shadow duration-300", className)}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: reducedMotion
-          ? undefined
-          : `perspective(800px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,
-        transition: "transform 0.1s ease-out",
-      }}
-      whileHover={{ boxShadow: "0 25px 80px rgba(139, 92, 246, 0.15), 0 0 40px rgba(6, 182, 212, 0.08)" }}
+      className={cn(
+        "glass rounded-2xl p-6 relative overflow-hidden will-change-transform",
+        "transition-[box-shadow] duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.1)]",
+        className
+      )}
+      style={{ transition: "transform 0.15s ease-out, box-shadow 0.3s" }}
     >
-      {/* Glare effect */}
       {!reducedMotion && (
         <div
+          ref={glareRef}
           className="absolute inset-0 pointer-events-none z-10 rounded-2xl"
-          style={{
-            background: `radial-gradient(circle at ${transform.glareX}% ${transform.glareY}%, ${glareColor}, transparent 60%)`,
-          }}
         />
       )}
       <div className="relative z-20">{children}</div>
-    </motion.div>
+    </div>
   );
 }

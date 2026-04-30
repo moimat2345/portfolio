@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 interface MousePosition {
   x: number;
@@ -9,27 +9,28 @@ interface MousePosition {
   normalizedY: number;
 }
 
-export function useMousePosition(): MousePosition {
-  const [position, setPosition] = useState<MousePosition>({
-    x: 0,
-    y: 0,
-    normalizedX: 0,
-    normalizedY: 0,
-  });
+// Refs-only mouse tracking — zero React re-renders
+const mouseState: MousePosition = { x: 0, y: 0, normalizedX: 0, normalizedY: 0 };
+let listenerAttached = false;
+
+function attachGlobalListener() {
+  if (listenerAttached || typeof window === "undefined") return;
+  listenerAttached = true;
+  window.addEventListener("mousemove", (e) => {
+    mouseState.x = e.clientX;
+    mouseState.y = e.clientY;
+    mouseState.normalizedX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseState.normalizedY = -(e.clientY / window.innerHeight) * 2 + 1;
+  }, { passive: true });
+}
+
+export function useMousePosition() {
+  const ref = useRef(mouseState);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      setPosition({
-        x: e.clientX,
-        y: e.clientY,
-        normalizedX: (e.clientX / window.innerWidth) * 2 - 1,
-        normalizedY: -(e.clientY / window.innerHeight) * 2 + 1,
-      });
-    };
-
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
+    attachGlobalListener();
+    ref.current = mouseState;
   }, []);
 
-  return position;
+  return ref;
 }
