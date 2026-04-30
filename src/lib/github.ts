@@ -17,7 +17,7 @@ export function getTopLangsUrl(): string {
 }
 
 export function getStreakUrl(): string {
-  return `https://github-readme-streak-stats.herokuapp.com/?user=${USERNAME}&background=${GITHUB_STATS_THEME.bg_color}&ring=${GITHUB_STATS_THEME.title_color}&fire=${GITHUB_STATS_THEME.title_color}&currStreakLabel=${GITHUB_STATS_THEME.text_color}&sideLabels=${GITHUB_STATS_THEME.text_color}&currStreakNum=${GITHUB_STATS_THEME.text_color}&sideNums=${GITHUB_STATS_THEME.text_color}&dates=${GITHUB_STATS_THEME.text_color}80&hide_border=true&border_radius=12`;
+  return `https://streak-stats.demolab.com/?user=${USERNAME}&background=${GITHUB_STATS_THEME.bg_color}&ring=${GITHUB_STATS_THEME.title_color}&fire=${GITHUB_STATS_THEME.title_color}&currStreakLabel=${GITHUB_STATS_THEME.text_color}&sideLabels=${GITHUB_STATS_THEME.text_color}&currStreakNum=${GITHUB_STATS_THEME.text_color}&sideNums=${GITHUB_STATS_THEME.text_color}&dates=${GITHUB_STATS_THEME.text_color}80&hide_border=true&border_radius=12`;
 }
 
 export interface GitHubData {
@@ -31,27 +31,34 @@ export async function fetchGitHubData(): Promise<GitHubData> {
   let lastPush: string | null = null;
 
   try {
+    const headers: Record<string, string> = {
+      Accept: "application/vnd.github.v3+json",
+    };
+    if (process.env.GITHUB_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    }
+
     const res = await fetch(
-      `https://api.github.com/users/${USERNAME}/events/public?per_page=1`,
-      {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          ...(process.env.GITHUB_TOKEN
-            ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
-            : {}),
-        },
-        next: { revalidate: 300 },
-      }
+      `https://api.github.com/users/${USERNAME}/events/public?per_page=5`,
+      { headers, next: { revalidate: 300 } }
     );
 
     if (res.ok) {
       const events = await res.json();
-      if (events.length > 0 && events[0].created_at) {
+      // Find the most recent PushEvent
+      const pushEvent = events.find(
+        (e: { type: string; created_at?: string }) => e.type === "PushEvent" && e.created_at
+      );
+      if (pushEvent) {
+        lastPush = pushEvent.created_at;
+      } else if (events.length > 0 && events[0].created_at) {
         lastPush = events[0].created_at;
       }
+    } else {
+      console.error(`[GitHub API] ${res.status} ${res.statusText} for ${USERNAME}`);
     }
-  } catch {
-    // Fail silently — chip will show "N/A"
+  } catch (err) {
+    console.error("[GitHub API] Failed to fetch events:", err);
   }
 
   return {

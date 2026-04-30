@@ -4,6 +4,7 @@
     "stack": "Stack",
     "github": "GitHub",
     "work": "Work",
+    "process": "Process",
     "contact": "Contact",
     "downloadCv": "Download CV"
   },
@@ -19,8 +20,8 @@
   },
   "Bio": {
     "title": "About",
-    "paragraph": "French engineer based in Bangkok. I build AI-driven automation for SMBs that lose hours on email, customer ops, and admin. Currently shipping <strong>Velora</strong> — a CRM that runs itself. Background in Next.js, FastAPI, AWS, and applied LLMs (Claude, Gemini, GPT-4o).",
-    "yearsCoding": "Years coding",
+    "paragraph": "French engineer based in Bangkok. I build AI-driven automation for SMBs that lose hours on email, customer ops, and admin. Currently shipping Velora — a CRM that runs itself. Background in Next.js, FastAPI, AWS, and applied LLMs (Claude, Gemini, GPT-4o).",
+    "yearsCoding": "Years coding full-time",
     "languages": "Languages",
     "fr": "French (native)",
     "en": "English (fluent)",
@@ -43,22 +44,61 @@
     "title": "Selected Work",
     "velora": {
       "name": "Velora",
-      "tag": "Live · production",
+      "tag": "Live · production · B2B",
       "subtitle": "AI-native CRM for B2B operators",
       "problem": "SMBs lose hours daily replying to suppliers, customers, and reviews. Existing CRMs need a human in the loop for every step.",
-      "solution": "A self-driving CRM that ingests inbox + web reviews + supplier comms, drafts responses with LLMs, escalates only when needed.",
-      "metric1": "70% reply time saved",
-      "metric2": "3 languages",
-      "metric3": "1 paying client"
+      "solution": "A self-driving CRM that ingests inbox + web reviews + supplier comms, drafts responses with LLMs, escalates only when needed."
     },
-    "tooling": {
-      "name": "Personal Tooling",
-      "tag": "Internal",
-      "subtitle": "Developer automation & monitoring",
-      "problem": "Repetitive tasks in development workflow — commit messages, server health checks, alerting.",
-      "solution": "AI commit-message generator (Claude API), EC2 health monitoring with Telegram alerts, custom CLI tools."
+    "autoPush": {
+      "name": "auto_push",
+      "tag": "Open source · Rust",
+      "subtitle": "AI-powered git commit CLI",
+      "problem": "Writing meaningful commit messages slows down flow.",
+      "solution": "Rust CLI installed globally. Run auto_push anywhere: it stages changes, sends the diff to Claude API, generates a commit message, then commits and pushes."
     },
-    "readMore": "Read more"
+    "devCalendar": {
+      "name": "dev_calendar",
+      "tag": "Private repo",
+      "subtitle": "Personal coding & listening dashboard",
+      "problem": "No good way to visualize coding habits alongside other daily signals.",
+      "solution": "Calendar view connecting GitHub + Spotify. Each day shows commit count and listening time. Click a day to see tracks and commits grouped by repo."
+    },
+    "piSpotify": {
+      "name": "pi_spotify_manager",
+      "tag": "Private repo · Hardware",
+      "subtitle": "Tactile Spotify controller for Raspberry Pi",
+      "problem": "Wanted a dedicated physical mini-display for music control.",
+      "solution": "Raspberry Pi + touchscreen. Displays current track cover. Tap to play/pause, double-tap sides for prev/next. Desktop version also available."
+    }
+  },
+  "Process": {
+    "title": "How I work",
+    "step1": {
+      "title": "Discovery call",
+      "duration": "30min, free",
+      "description": "Understand your current process and identify where hours are bleeding."
+    },
+    "step2": {
+      "title": "Audit & proposal",
+      "duration": "~1 week",
+      "description": "Technical doc, scope, estimate, timeline."
+    },
+    "step3": {
+      "title": "Build MVP",
+      "duration": "4–6 weeks",
+      "description": "Weekly demos, shared Linear/Notion, full transparency."
+    },
+    "step4": {
+      "title": "Iteration & handoff",
+      "duration": "included",
+      "description": "Documentation, training, 30 days of support."
+    }
+  },
+  "Testimonials": {
+    "title": "What clients say",
+    "quote": "Mateo shipped our CRM automation in 5 weeks. We went from drowning in supplier emails to having drafts ready every morning. Best ROI we've had on a tech contract.",
+    "author": "CEO, B2B distributor (Bangkok)",
+    "placeholder": "Placeholder"
   },
   "Contact": {
     "headline": "Got a process bleeding hours? Let's automate it.",

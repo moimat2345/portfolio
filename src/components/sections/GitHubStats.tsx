@@ -1,12 +1,44 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { RevealText } from "@/components/ui/RevealText";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
+
+function StatCard({ label, url, index, isInView }: { label: string; url?: string; index: number; isInView: boolean }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed || !url) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60, rotateY: -15 }}
+      animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+      transition={{
+        duration: 0.7,
+        delay: 0.2 + index * 0.15,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+    >
+      <TiltCard className="flex flex-col items-center gap-4">
+        <h3 className="text-xs font-mono text-text-mute uppercase tracking-wider">
+          {label}
+        </h3>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={url}
+          alt={label}
+          className="w-full rounded-lg"
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      </TiltCard>
+    </motion.div>
+  );
+}
 
 export function GitHubStats() {
   const t = useTranslations("GitHub");
@@ -19,6 +51,9 @@ export function GitHubStats() {
     { label: t("topLanguages"), url: data?.topLangsUrl },
     { label: t("streak"), url: data?.streakUrl },
   ];
+
+  // Hide entire section while loading
+  if (isLoading) return null;
 
   return (
     <SectionWrapper id="github">
@@ -33,33 +68,7 @@ export function GitHubStats() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {cards.map(({ label, url }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 60, rotateY: -15 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-              transition={{
-                duration: 0.7,
-                delay: 0.2 + i * 0.15,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            >
-              <TiltCard className="flex flex-col items-center gap-4">
-                <h3 className="text-xs font-mono text-text-mute uppercase tracking-wider">
-                  {label}
-                </h3>
-                {isLoading || !url ? (
-                  <div className="w-full aspect-[2/1] bg-white/[0.02] rounded-lg animate-pulse" />
-                ) : (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={url}
-                    alt={label}
-                    className="w-full rounded-lg"
-                    loading="lazy"
-                  />
-                )}
-              </TiltCard>
-            </motion.div>
+            <StatCard key={label} label={label} url={url} index={i} isInView={isInView} />
           ))}
         </div>
       </div>

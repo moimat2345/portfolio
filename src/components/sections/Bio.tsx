@@ -13,7 +13,7 @@ import { CODING_START_YEAR } from "@/lib/constants";
 
 export function Bio() {
   const t = useTranslations("Bio");
-  const yearsCoding = new Date().getFullYear() - CODING_START_YEAR;
+  const yearsCoding = Math.max(1, new Date().getFullYear() - CODING_START_YEAR);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20%" });
 

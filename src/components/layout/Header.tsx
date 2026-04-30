@@ -19,6 +19,7 @@ export function Header() {
     Stack: t("stack"),
     GitHub: t("github"),
     Work: t("work"),
+    Process: t("process"),
     Contact: t("contact"),
   };
 

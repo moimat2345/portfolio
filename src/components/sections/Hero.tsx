@@ -97,9 +97,11 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}
       >
-        <Chip icon={<GitCommit size={12} />}>
-          {t("lastCommit")}: {data?.lastPush ? timeAgo(data.lastPush) : "..."}
-        </Chip>
+        {data?.lastPush && (
+          <Chip icon={<GitCommit size={12} />}>
+            {t("lastCommit")}: {timeAgo(data.lastPush)}
+          </Chip>
+        )}
         <Chip pulse>
           {t("available")}
         </Chip>

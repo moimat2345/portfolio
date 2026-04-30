@@ -4,6 +4,7 @@
     "stack": "Stack",
     "github": "GitHub",
     "work": "Projets",
+    "process": "Process",
     "contact": "Contact",
     "downloadCv": "Télécharger CV"
   },
@@ -19,8 +20,8 @@
   },
   "Bio": {
     "title": "À propos",
-    "paragraph": "Ingénieur français basé à Bangkok. Je construis des automatisations IA pour les PME qui perdent des heures en e-mails, opérations clients et admin. Actuellement en train de développer <strong>Velora</strong> — un CRM qui se pilote tout seul. Expérience en Next.js, FastAPI, AWS et LLMs appliqués (Claude, Gemini, GPT-4o).",
-    "yearsCoding": "Années de code",
+    "paragraph": "Ingénieur français basé à Bangkok. Je construis des automatisations IA pour les PME qui perdent des heures en e-mails, opérations clients et admin. Actuellement en train de développer Velora — un CRM qui se pilote tout seul. Expérience en Next.js, FastAPI, AWS et LLMs appliqués (Claude, Gemini, GPT-4o).",
+    "yearsCoding": "Années de code à plein temps",
     "languages": "Langues",
     "fr": "Français (natif)",
     "en": "Anglais (courant)",
@@ -43,22 +44,61 @@
     "title": "Projets sélectionnés",
     "velora": {
       "name": "Velora",
-      "tag": "En ligne · production",
+      "tag": "En ligne · production · B2B",
       "subtitle": "CRM IA natif pour opérateurs B2B",
       "problem": "Les PME perdent des heures chaque jour à répondre aux fournisseurs, clients et avis. Les CRM existants nécessitent un humain à chaque étape.",
-      "solution": "Un CRM autonome qui ingère les boîtes mail + avis web + communications fournisseurs, rédige les réponses avec des LLMs, et n'escalade qu'en cas de besoin.",
-      "metric1": "70% de temps de réponse économisé",
-      "metric2": "3 langues",
-      "metric3": "1 client payant"
+      "solution": "Un CRM autonome qui ingère les boîtes mail + avis web + communications fournisseurs, rédige les réponses avec des LLMs, et n'escalade qu'en cas de besoin."
     },
-    "tooling": {
-      "name": "Outils personnels",
-      "tag": "Interne",
-      "subtitle": "Automatisation & monitoring développeur",
-      "problem": "Tâches répétitives dans le workflow de développement — messages de commit, vérifications serveur, alertes.",
-      "solution": "Générateur de messages de commit IA (Claude API), monitoring EC2 avec alertes Telegram, outils CLI personnalisés."
+    "autoPush": {
+      "name": "auto_push",
+      "tag": "Open source · Rust",
+      "subtitle": "CLI de commit IA",
+      "problem": "Écrire des messages de commit pertinents casse le flow.",
+      "solution": "CLI Rust installé globalement. Lancez auto_push n'importe où : il stage les changements, envoie le diff à Claude API, génère un message de commit, puis commit et push."
     },
-    "readMore": "En savoir plus"
+    "devCalendar": {
+      "name": "dev_calendar",
+      "tag": "Repo privé",
+      "subtitle": "Dashboard personnel code & écoute",
+      "problem": "Pas de bon moyen de visualiser ses habitudes de code aux côtés d'autres signaux quotidiens.",
+      "solution": "Vue calendrier connectant GitHub + Spotify. Chaque jour affiche le nombre de commits et le temps d'écoute. Cliquez sur un jour pour voir les tracks et commits groupés par repo."
+    },
+    "piSpotify": {
+      "name": "pi_spotify_manager",
+      "tag": "Repo privé · Hardware",
+      "subtitle": "Contrôleur Spotify tactile pour Raspberry Pi",
+      "problem": "Envie d'un mini-écran physique dédié au contrôle musical.",
+      "solution": "Raspberry Pi + écran tactile. Affiche la pochette du titre en cours. Tap pour play/pause, double-tap côtés pour précédent/suivant. Version desktop aussi disponible."
+    }
+  },
+  "Process": {
+    "title": "Comment je travaille",
+    "step1": {
+      "title": "Appel découverte",
+      "duration": "30min, gratuit",
+      "description": "Comprendre votre process actuel et identifier où les heures se perdent."
+    },
+    "step2": {
+      "title": "Audit & proposition",
+      "duration": "~1 semaine",
+      "description": "Doc technique, périmètre, estimation, timeline."
+    },
+    "step3": {
+      "title": "Build MVP",
+      "duration": "4–6 semaines",
+      "description": "Démos hebdomadaires, Linear/Notion partagé, transparence totale."
+    },
+    "step4": {
+      "title": "Itération & livraison",
+      "duration": "inclus",
+      "description": "Documentation, formation, 30 jours de support."
+    }
+  },
+  "Testimonials": {
+    "title": "Ce que disent les clients",
+    "quote": "Mateo a livré notre automatisation CRM en 5 semaines. On est passé de la noyade dans les mails fournisseurs à des brouillons prêts chaque matin. Le meilleur ROI qu'on ait eu sur un contrat tech.",
+    "author": "CEO, distributeur B2B (Bangkok)",
+    "placeholder": "Placeholder"
   },
   "Contact": {
     "headline": "Un process qui vous fait perdre des heures ? Automatisons-le.",

@@ -7,6 +7,8 @@ import { Bio } from "@/components/sections/Bio";
 import { StackSkills } from "@/components/sections/StackSkills";
 import { GitHubStats } from "@/components/sections/GitHubStats";
 import { SelectedWork } from "@/components/sections/SelectedWork";
+import { Process } from "@/components/sections/Process";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/effects/CustomCursor";
 import { VibeModeToggle } from "@/components/effects/VibeModeToggle";
@@ -36,6 +38,8 @@ export default function Home() {
         <StackSkills />
         <GitHubStats />
         <SelectedWork />
+        <Process />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

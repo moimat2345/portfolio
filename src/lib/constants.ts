@@ -26,6 +26,7 @@ export const NAV_LINKS = [
   { label: "Stack", href: "#stack" },
   { label: "GitHub", href: "#github" },
   { label: "Work", href: "#work" },
+  { label: "Process", href: "#process" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -75,4 +76,4 @@ export const GITHUB_STATS_THEME = {
   border_radius: "12",
 } as const;
 
-export const CODING_START_YEAR = 2019;
+export const CODING_START_YEAR = 2024;

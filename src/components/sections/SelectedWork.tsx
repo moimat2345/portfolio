@@ -17,7 +17,6 @@ function ProjectCard({
   subtitle,
   problem,
   solution,
-  metrics,
   stack,
   url,
   reverse,
@@ -27,7 +26,6 @@ function ProjectCard({
   subtitle: string;
   problem: string;
   solution: string;
-  metrics?: string[];
   stack?: string[];
   url?: string;
   reverse?: boolean;
@@ -77,7 +75,7 @@ function ProjectCard({
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.2 }}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <TextScramble
             as="h3"
             text={name}
@@ -117,23 +115,6 @@ function ProjectCard({
           </motion.div>
         </div>
 
-        {metrics && (
-          <div className="flex flex-wrap gap-2 pt-2">
-            {metrics.map((m, i) => (
-              <motion.div
-                key={m}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ type: "spring", delay: 0.8 + i * 0.1 }}
-              >
-                <Chip className="bg-violet/10 border-violet/20 text-white hover:bg-violet/20 transition-colors cursor-default">
-                  {m}
-                </Chip>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
         {stack && (
           <div className="flex flex-wrap gap-2 pt-1">
             {stack.map((s, i) => (
@@ -142,7 +123,7 @@ function ProjectCard({
                 className="text-[10px] font-mono text-text-mute px-2 py-1 glass rounded hover:text-white hover:border-violet/30 transition-all cursor-default"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: 1 + i * 0.05 }}
+                transition={{ delay: 0.8 + i * 0.05 }}
                 whileHover={{ scale: 1.1, y: -2 }}
               >
                 {s}
@@ -170,13 +151,11 @@ export function SelectedWork() {
 
       <div className="space-y-32">
         <ProjectCard
-
           name={t("velora.name")}
           tag={t("velora.tag")}
           subtitle={t("velora.subtitle")}
           problem={t("velora.problem")}
           solution={t("velora.solution")}
-          metrics={[t("velora.metric1"), t("velora.metric2"), t("velora.metric3")]}
           stack={[
             "Next.js", "FastAPI", "AWS EC2", "Supabase",
             "Microsoft Graph", "Telegram", "Claude API", "Gemini", "Stripe",
@@ -185,14 +164,34 @@ export function SelectedWork() {
         />
 
         <ProjectCard
+          name={t("autoPush.name")}
+          tag={t("autoPush.tag")}
+          subtitle={t("autoPush.subtitle")}
+          problem={t("autoPush.problem")}
+          solution={t("autoPush.solution")}
+          stack={["Rust", "Claude API", "Git"]}
+          url="github.com/moimat2345/auto_push"
+          reverse
+        />
 
-          name={t("tooling.name")}
-          tag={t("tooling.tag")}
-          subtitle={t("tooling.subtitle")}
-          problem={t("tooling.problem")}
-          solution={t("tooling.solution")}
-          stack={["Claude API", "Python", "AWS EC2", "Telegram"]}
-          url="github.com/moimat2345"
+        <ProjectCard
+          name={t("devCalendar.name")}
+          tag={t("devCalendar.tag")}
+          subtitle={t("devCalendar.subtitle")}
+          problem={t("devCalendar.problem")}
+          solution={t("devCalendar.solution")}
+          stack={["Next.js", "React", "GitHub API", "Spotify API"]}
+          url="Private repo"
+        />
+
+        <ProjectCard
+          name={t("piSpotify.name")}
+          tag={t("piSpotify.tag")}
+          subtitle={t("piSpotify.subtitle")}
+          problem={t("piSpotify.problem")}
+          solution={t("piSpotify.solution")}
+          stack={["Python", "Spotify API", "Raspberry Pi"]}
+          url="Private repo"
           reverse
         />
       </div>
