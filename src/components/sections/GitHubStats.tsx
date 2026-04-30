@@ -52,9 +52,6 @@ export function GitHubStats() {
     { label: t("streak"), url: data?.streakUrl },
   ];
 
-  // Hide entire section while loading
-  if (isLoading) return null;
-
   return (
     <SectionWrapper id="github">
       <div ref={ref}>
@@ -67,9 +64,19 @@ export function GitHubStats() {
         </RevealText>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cards.map(({ label, url }, i) => (
-            <StatCard key={label} label={label} url={url} index={i} isInView={isInView} />
-          ))}
+          {isLoading ? (
+            // Skeleton placeholders while loading
+            Array.from({ length: 3 }).map((_, i) => (
+              <TiltCard key={i} className="flex flex-col items-center gap-4">
+                <div className="h-4 w-24 bg-white/[0.04] rounded animate-pulse" />
+                <div className="w-full aspect-[2/1] bg-white/[0.02] rounded-lg animate-pulse" />
+              </TiltCard>
+            ))
+          ) : (
+            cards.map(({ label, url }, i) => (
+              <StatCard key={label} label={label} url={url} index={i} isInView={isInView} />
+            ))
+          )}
         </div>
       </div>
     </SectionWrapper>
