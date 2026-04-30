@@ -7,7 +7,6 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Chip } from "@/components/ui/Chip";
 import { TextScramble } from "@/components/ui/TextScramble";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
-import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
 import { ArrowDown, Download, GitCommit } from "lucide-react";
 
 const HeroScene = dynamic(
@@ -28,20 +27,11 @@ function timeAgo(dateStr: string): string {
 export function Hero() {
   const t = useTranslations("Hero");
   const { data } = useGitHubStats();
-  const reducedMotion = useReducedMotionContext();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
-      {/* 3D scene or static gradient fallback */}
-      {reducedMotion ? (
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.15),transparent_70%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(6,182,212,0.1),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(236,72,153,0.1),transparent_60%)]" />
-        </div>
-      ) : (
-        <HeroScene />
-      )}
+      {/* 3D chrome torusknot — transparent canvas over the shader background */}
+      <HeroScene />
 
       {/* Name — massive, with scramble decode effect */}
       <motion.div

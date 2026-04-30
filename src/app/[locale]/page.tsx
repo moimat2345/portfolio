@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
@@ -12,11 +13,16 @@ import { VibeModeToggle } from "@/components/effects/VibeModeToggle";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { FloatingParticles } from "@/components/effects/FloatingParticles";
 import { NoiseOverlay } from "@/components/effects/NoiseOverlay";
-import { AmbientBackground } from "@/components/effects/AmbientBackground";
+
+const BackgroundScene = dynamic(
+  () => import("@/components/three/BackgroundScene").then((mod) => ({ default: mod.BackgroundScene })),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
     <>
+      <BackgroundScene />
       <SmoothScroll />
       <FloatingParticles />
       <NoiseOverlay />
@@ -24,18 +30,15 @@ export default function Home() {
       <VibeModeToggle />
       <ScrollProgress />
       <Header />
-      <div className="relative">
-        <AmbientBackground />
-        <main id="main">
-          <Hero />
-          <Bio />
-          <StackSkills />
-          <GitHubStats />
-          <SelectedWork />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <main id="main">
+        <Hero />
+        <Bio />
+        <StackSkills />
+        <GitHubStats />
+        <SelectedWork />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }
