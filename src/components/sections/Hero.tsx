@@ -7,7 +7,6 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Chip } from "@/components/ui/Chip";
 import { TextScramble } from "@/components/ui/TextScramble";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
-import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
 import { ArrowDown, Download, GitCommit } from "lucide-react";
 
 const HeroScene = dynamic(
@@ -28,22 +27,13 @@ function timeAgo(dateStr: string): string {
 export function Hero() {
   const t = useTranslations("Hero");
   const { data } = useGitHubStats();
-  const reducedMotion = useReducedMotionContext();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
-      {/* 3D scene or static gradient fallback */}
-      {reducedMotion ? (
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.15),transparent_70%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(6,182,212,0.1),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(236,72,153,0.1),transparent_60%)]" />
-        </div>
-      ) : (
-        <HeroScene />
-      )}
+      {/* 3D chrome form — floats behind the text */}
+      <HeroScene />
 
-      {/* Name — massive, with scramble decode effect */}
+      {/* Name */}
       <motion.div
         className="text-center relative z-10"
         initial={{ opacity: 0 }}
@@ -70,7 +60,7 @@ export function Hero() {
         </h1>
       </motion.div>
 
-      {/* Tagline — word by word reveal */}
+      {/* Tagline */}
       <motion.div
         className="mt-8 text-center max-w-xl relative z-10"
         initial={{ opacity: 0, y: 20 }}
@@ -122,7 +112,7 @@ export function Hero() {
         </Chip>
       </motion.div>
 
-      {/* Scroll indicator — bouncing arrow with pulse ring */}
+      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
@@ -134,7 +124,6 @@ export function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          {/* Pulse ring */}
           <motion.div
             className="absolute w-10 h-10 rounded-full border border-white/10"
             animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
