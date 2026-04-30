@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -8,11 +7,6 @@ import { Chip } from "@/components/ui/Chip";
 import { TextScramble } from "@/components/ui/TextScramble";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
 import { ArrowDown, Download, GitCommit } from "lucide-react";
-
-const HeroScene = dynamic(
-  () => import("@/components/three/HeroScene").then((mod) => ({ default: mod.HeroScene })),
-  { ssr: false }
-);
 
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -30,10 +24,9 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
-      {/* 3D chrome torusknot — transparent canvas over the shader background */}
-      <HeroScene />
+      {/* 3D torusknot lives in the fixed BackgroundScene — no separate canvas here */}
 
-      {/* Name — massive, with scramble decode effect */}
+      {/* Name */}
       <motion.div
         className="text-center relative z-10"
         initial={{ opacity: 0 }}
@@ -60,7 +53,7 @@ export function Hero() {
         </h1>
       </motion.div>
 
-      {/* Tagline — word by word reveal */}
+      {/* Tagline */}
       <motion.div
         className="mt-8 text-center max-w-xl relative z-10"
         initial={{ opacity: 0, y: 20 }}
@@ -112,7 +105,7 @@ export function Hero() {
         </Chip>
       </motion.div>
 
-      {/* Scroll indicator — bouncing arrow with pulse ring */}
+      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
@@ -124,7 +117,6 @@ export function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          {/* Pulse ring */}
           <motion.div
             className="absolute w-10 h-10 rounded-full border border-white/10"
             animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
