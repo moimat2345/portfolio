@@ -1,56 +1,55 @@
 "use client";
 
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { RevealText } from "@/components/ui/RevealText";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { TextScramble } from "@/components/ui/TextScramble";
 import { CODING_START_YEAR } from "@/lib/constants";
 
-function RichText({ text }: { text: string }) {
-  // Split on <strong>...</strong> tags from our own translation files
-  const parts = text.split(/(<strong>.*?<\/strong>)/g);
-  return (
-    <>
-      {parts.map((part, i) => {
-        const match = part.match(/^<strong>(.*?)<\/strong>$/);
-        if (match) {
-          return (
-            <strong key={i} className="text-white font-semibold">
-              {match[1]}
-            </strong>
-          );
-        }
-        return <span key={i}>{part}</span>;
-      })}
-    </>
-  );
-}
 
 export function Bio() {
   const t = useTranslations("Bio");
   const yearsCoding = new Date().getFullYear() - CODING_START_YEAR;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
     <SectionWrapper id="about">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+      <div ref={ref} className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 items-start">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+          <RevealText
+            as="h2"
+            className="text-4xl md:text-5xl font-bold mb-8 gradient-text"
+            wordByWord
+          >
             {t("title")}
-          </h2>
-          <p className="text-lg text-text-mute leading-relaxed max-w-2xl">
-            <RichText text={t.raw("paragraph")} />
-          </p>
+          </RevealText>
+          <RevealText
+            as="p"
+            className="text-lg text-text-mute leading-relaxed max-w-2xl"
+            delay={0.3}
+          >
+            {t.raw("paragraph").replace(/<\/?strong>/g, "")}
+          </RevealText>
         </div>
 
-        <GlassCard className="space-y-5">
-          <div>
+        <TiltCard className="space-y-6">
+          {/* Years coding with animated counter */}
+          <div data-animate>
             <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
-              {t("yearsCoding")}
+              <TextScramble text={t("yearsCoding")} trigger={isInView} delay={200} />
             </p>
-            <p className="text-2xl font-bold">{yearsCoding}+</p>
+            <p className="text-4xl font-bold gradient-text">
+              <AnimatedCounter target={yearsCoding} suffix="+" trigger={isInView} />
+            </p>
           </div>
-          <div>
+          <div data-animate>
             <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
-              {t("languages")}
+              <TextScramble text={t("languages")} trigger={isInView} delay={400} />
             </p>
             <p className="text-sm">
               🇫🇷 {t("fr")}
@@ -58,19 +57,25 @@ export function Bio() {
               🇬🇧 {t("en")}
             </p>
           </div>
-          <div>
+          <div data-animate>
             <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
-              {t("timezone")}
+              <TextScramble text={t("timezone")} trigger={isInView} delay={600} />
             </p>
             <p className="text-sm font-mono">{t("timezoneValue")}</p>
           </div>
-          <div>
+          <div data-animate>
             <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
-              {t("currentProject")}
+              <TextScramble text={t("currentProject")} trigger={isInView} delay={800} />
             </p>
-            <p className="text-sm font-semibold gradient-text">{t("currentProjectValue")}</p>
+            <motion.p
+              className="text-lg font-bold gradient-text"
+              animate={isInView ? { scale: [1, 1.05, 1] } : {}}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              {t("currentProjectValue")}
+            </motion.p>
           </div>
-        </GlassCard>
+        </TiltCard>
       </div>
     </SectionWrapper>
   );
