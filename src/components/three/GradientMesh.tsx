@@ -81,12 +81,9 @@ void main() {
   vec3 color = mix(uColorA, uColorB, mix1);
   color = mix(color, uColorC, mix2 * 0.6);
 
-  // Soft vignette — keeps edges dark, center brighter
-  float vignette = 1.0 - smoothstep(0.2, 1.1, length(uv - 0.5) * 1.1);
-  color *= vignette * 0.6 + 0.4;
-
-  // Overall brightness — visible but won't wash out white text
-  color *= 0.5;
+  float vignette = 1.0 - smoothstep(0.3, 1.0, length(uv - 0.5) * 1.2);
+  color *= vignette * 0.7 + 0.3;
+  color *= 0.35;
 
   gl_FragColor = vec4(color, 1.0);
 }

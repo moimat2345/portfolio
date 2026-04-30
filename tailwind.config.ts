@@ -31,6 +31,9 @@ const config: Config = {
         "marquee": "marquee 40s linear infinite",
         "marquee-reverse": "marquee-reverse 40s linear infinite",
         "pulse-dot": "pulse-dot 2s ease-in-out infinite",
+        "drift-1": "drift-1 25s ease-in-out infinite",
+        "drift-2": "drift-2 30s ease-in-out infinite",
+        "drift-3": "drift-3 20s ease-in-out infinite",
       },
       keyframes: {
         marquee: {
@@ -44,6 +47,20 @@ const config: Config = {
         "pulse-dot": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
+        },
+        "drift-1": {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "33%": { transform: "translate(60px, -40px)" },
+          "66%": { transform: "translate(-30px, 30px)" },
+        },
+        "drift-2": {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "25%": { transform: "translate(-50px, 30px)" },
+          "75%": { transform: "translate(40px, -20px)" },
+        },
+        "drift-3": {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "50%": { transform: "translate(30px, 50px)" },
         },
       },
     },
