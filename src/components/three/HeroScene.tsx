@@ -2,7 +2,6 @@
 
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
 import { ChromeForm } from "./ChromeForm";
 import { useMousePosition } from "@/hooks/useMousePosition";
 
@@ -15,14 +14,7 @@ function Scene() {
     mouseState.current.y = mouseRef.current.normalizedY;
   });
 
-  return (
-    <>
-      <ChromeForm mouseRef={mouseState} />
-      <Environment preset="city" />
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={0.5} />
-    </>
-  );
+  return <ChromeForm mouseRef={mouseState} />;
 }
 
 export function HeroScene() {
