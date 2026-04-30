@@ -31,7 +31,7 @@ export function Hero() {
   const reducedMotion = useReducedMotionContext();
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
       {/* 3D scene or static gradient fallback */}
       {reducedMotion ? (
         <div className="absolute inset-0 -z-10">

@@ -12,6 +12,7 @@ import { VibeModeToggle } from "@/components/effects/VibeModeToggle";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { FloatingParticles } from "@/components/effects/FloatingParticles";
 import { NoiseOverlay } from "@/components/effects/NoiseOverlay";
+import { AmbientBackground } from "@/components/effects/AmbientBackground";
 
 export default function Home() {
   return (
@@ -23,15 +24,18 @@ export default function Home() {
       <VibeModeToggle />
       <ScrollProgress />
       <Header />
-      <main id="main">
-        <Hero />
-        <Bio />
-        <StackSkills />
-        <GitHubStats />
-        <SelectedWork />
-        <Contact />
-      </main>
-      <Footer />
+      <div className="relative">
+        <AmbientBackground />
+        <main id="main">
+          <Hero />
+          <Bio />
+          <StackSkills />
+          <GitHubStats />
+          <SelectedWork />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

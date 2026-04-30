@@ -13,7 +13,6 @@ function Scene() {
   const { audioLevel } = useAudioContext();
   const mouseState = useRef({ x: 0, y: 0 });
 
-  // Read from the shared mouse ref each frame — no re-renders
   useFrame(() => {
     mouseState.current.x = mouseRef.current.normalizedX;
     mouseState.current.y = mouseRef.current.normalizedY;
@@ -32,7 +31,10 @@ function Scene() {
 
 export function HeroScene() {
   return (
-    <div className="absolute inset-0 -z-10">
+    <div
+      className="absolute -z-10 left-0 right-0 top-0"
+      style={{ height: "140vh" }}
+    >
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 1.5]}
@@ -43,6 +45,14 @@ export function HeroScene() {
           <Scene />
         </Suspense>
       </Canvas>
+      {/* Fade-out gradient at bottom — smooth transition into page */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: "40vh",
+          background: "linear-gradient(to bottom, transparent, #0a0a0f)",
+        }}
+      />
     </div>
   );
 }
