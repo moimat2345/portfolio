@@ -1,0 +1,73 @@
+{
+  "Nav": {
+    "about": "À propos",
+    "stack": "Stack",
+    "github": "GitHub",
+    "work": "Projets",
+    "contact": "Contact",
+    "downloadCv": "Télécharger CV"
+  },
+  "Hero": {
+    "firstName": "Mateo",
+    "lastName": "Nuskovski",
+    "tagline": "Ingénieur full-stack construisant des outils autonomes pour les PME.",
+    "subline": "Français. Actuellement à Bangkok. Disponible pour des missions.",
+    "ctaWork": "Voir les projets",
+    "ctaCv": "Télécharger CV",
+    "lastCommit": "Dernier commit",
+    "available": "Disponible"
+  },
+  "Bio": {
+    "title": "À propos",
+    "paragraph": "Ingénieur français basé à Bangkok. Je construis des automatisations IA pour les PME qui perdent des heures en e-mails, opérations clients et admin. Actuellement en train de développer <strong>Velora</strong> — un CRM qui se pilote tout seul. Expérience en Next.js, FastAPI, AWS et LLMs appliqués (Claude, Gemini, GPT-4o).",
+    "yearsCoding": "Années de code",
+    "languages": "Langues",
+    "fr": "Français (natif)",
+    "en": "Anglais (courant)",
+    "timezone": "Fuseau horaire",
+    "timezoneValue": "ICT (UTC+7)",
+    "currentProject": "Projet en cours",
+    "currentProjectValue": "Velora"
+  },
+  "Stack": {
+    "title": "Stack & Compétences",
+    "specialty": "Je me spécialise dans la mise en production d'agents LLM — pilotés par cron, avec validation humaine, multilingues."
+  },
+  "GitHub": {
+    "title": "Activité GitHub",
+    "contributions": "Contributions",
+    "topLanguages": "Langages principaux",
+    "streak": "Série"
+  },
+  "Work": {
+    "title": "Projets sélectionnés",
+    "velora": {
+      "name": "Velora",
+      "tag": "En ligne · production",
+      "subtitle": "CRM IA natif pour opérateurs B2B",
+      "problem": "Les PME perdent des heures chaque jour à répondre aux fournisseurs, clients et avis. Les CRM existants nécessitent un humain à chaque étape.",
+      "solution": "Un CRM autonome qui ingère les boîtes mail + avis web + communications fournisseurs, rédige les réponses avec des LLMs, et n'escalade qu'en cas de besoin.",
+      "metric1": "70% de temps de réponse économisé",
+      "metric2": "3 langues",
+      "metric3": "1 client payant"
+    },
+    "tooling": {
+      "name": "Outils personnels",
+      "tag": "Interne",
+      "subtitle": "Automatisation & monitoring développeur",
+      "problem": "Tâches répétitives dans le workflow de développement — messages de commit, vérifications serveur, alertes.",
+      "solution": "Générateur de messages de commit IA (Claude API), monitoring EC2 avec alertes Telegram, outils CLI personnalisés."
+    },
+    "readMore": "En savoir plus"
+  },
+  "Contact": {
+    "headline": "Un process qui vous fait perdre des heures ? Automatisons-le.",
+    "ctaEmail": "Me contacter",
+    "ctaCal": "Réserver un appel",
+    "ctaCv": "Télécharger CV"
+  },
+  "Footer": {
+    "copyright": "© {year} Mateo Nuskovski",
+    "builtWith": "Construit avec Claude Code · Expédié depuis Bangkok"
+  }
+}

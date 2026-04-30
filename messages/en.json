@@ -1,0 +1,73 @@
+{
+  "Nav": {
+    "about": "About",
+    "stack": "Stack",
+    "github": "GitHub",
+    "work": "Work",
+    "contact": "Contact",
+    "downloadCv": "Download CV"
+  },
+  "Hero": {
+    "firstName": "Mateo",
+    "lastName": "Nuskovski",
+    "tagline": "Full-stack engineer building autonomous tools for SMBs.",
+    "subline": "French. Currently in Bangkok. Available for contracts.",
+    "ctaWork": "See work",
+    "ctaCv": "Download CV",
+    "lastCommit": "Last commit",
+    "available": "Available now"
+  },
+  "Bio": {
+    "title": "About",
+    "paragraph": "French engineer based in Bangkok. I build AI-driven automation for SMBs that lose hours on email, customer ops, and admin. Currently shipping <strong>Velora</strong> — a CRM that runs itself. Background in Next.js, FastAPI, AWS, and applied LLMs (Claude, Gemini, GPT-4o).",
+    "yearsCoding": "Years coding",
+    "languages": "Languages",
+    "fr": "French (native)",
+    "en": "English (fluent)",
+    "timezone": "Timezone",
+    "timezoneValue": "ICT (UTC+7)",
+    "currentProject": "Currently building",
+    "currentProjectValue": "Velora"
+  },
+  "Stack": {
+    "title": "Stack & Skills",
+    "specialty": "I specialize in shipping production LLM agents — cron-driven, human-in-the-loop, multilingual."
+  },
+  "GitHub": {
+    "title": "GitHub Activity",
+    "contributions": "Contributions",
+    "topLanguages": "Top Languages",
+    "streak": "Streak"
+  },
+  "Work": {
+    "title": "Selected Work",
+    "velora": {
+      "name": "Velora",
+      "tag": "Live · production",
+      "subtitle": "AI-native CRM for B2B operators",
+      "problem": "SMBs lose hours daily replying to suppliers, customers, and reviews. Existing CRMs need a human in the loop for every step.",
+      "solution": "A self-driving CRM that ingests inbox + web reviews + supplier comms, drafts responses with LLMs, escalates only when needed.",
+      "metric1": "70% reply time saved",
+      "metric2": "3 languages",
+      "metric3": "1 paying client"
+    },
+    "tooling": {
+      "name": "Personal Tooling",
+      "tag": "Internal",
+      "subtitle": "Developer automation & monitoring",
+      "problem": "Repetitive tasks in development workflow — commit messages, server health checks, alerting.",
+      "solution": "AI commit-message generator (Claude API), EC2 health monitoring with Telegram alerts, custom CLI tools."
+    },
+    "readMore": "Read more"
+  },
+  "Contact": {
+    "headline": "Got a process bleeding hours? Let's automate it.",
+    "ctaEmail": "Get in touch",
+    "ctaCal": "Book a call",
+    "ctaCv": "Download CV"
+  },
+  "Footer": {
+    "copyright": "© {year} Mateo Nuskovski",
+    "builtWith": "Built with Claude Code · Shipped from Bangkok"
+  }
+}
