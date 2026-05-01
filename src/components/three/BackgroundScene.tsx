@@ -23,7 +23,7 @@ function ChromeTorusKnot({ mouseRef }: { mouseRef: React.MutableRefObject<{ x: n
 
   return (
     <Float speed={1.5} floatIntensity={0.5} rotationIntensity={0.2}>
-      <mesh ref={meshRef} scale={1.8} position={[0, 0, 0]}>
+      <mesh ref={meshRef} scale={1.4} position={[0, 0, 0]}>
         <torusKnotGeometry args={[1, 0.3, 100, 24]} />
         <meshPhysicalMaterial
           metalness={1}
