@@ -29,6 +29,7 @@ export function Process() {
           as="h2"
           className="text-4xl md:text-5xl font-bold mb-16 gradient-text text-center"
           wordByWord
+          halo
         >
           {t("title")}
         </RevealText>

@@ -145,6 +145,7 @@ export function SelectedWork() {
         as="h2"
         className="text-4xl md:text-5xl font-bold mb-20 gradient-text text-center"
         wordByWord
+        halo
       >
         {t("title")}
       </RevealText>
