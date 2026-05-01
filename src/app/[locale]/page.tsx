@@ -15,6 +15,7 @@ import { VibeModeToggle } from "@/components/effects/VibeModeToggle";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { FloatingParticles } from "@/components/effects/FloatingParticles";
 import { NoiseOverlay } from "@/components/effects/NoiseOverlay";
+import { ContentScrim } from "@/components/effects/ContentScrim";
 
 const BackgroundScene = dynamic(
   () => import("@/components/three/BackgroundScene").then((mod) => ({ default: mod.BackgroundScene })),
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <>
       <BackgroundScene />
+      <ContentScrim />
       <SmoothScroll />
       <FloatingParticles />
       <NoiseOverlay />

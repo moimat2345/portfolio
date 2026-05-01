@@ -28,7 +28,9 @@ export function Header() {
       <motion.header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "glass py-3" : "py-5"
+          isScrolled
+            ? "bg-zinc-950/80 backdrop-blur-xl border-b border-white/[0.06] py-3"
+            : "bg-black/30 backdrop-blur-sm py-5"
         )}
         initial={{ y: 0 }}
         animate={{ y: isHidden ? -100 : 0 }}
@@ -37,7 +39,7 @@ export function Header() {
         <nav className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           <a
             href="#"
-            className="text-lg font-bold tracking-tight gradient-text"
+            className="text-lg font-bold tracking-tight text-white text-shadow"
           >
             MN
           </a>
@@ -47,7 +49,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-text-mute hover:text-white transition-colors duration-200"
+                className="text-sm text-zinc-300 hover:text-white transition-colors duration-200 text-shadow"
               >
                 {navLabels[link.label] || link.label}
               </a>
@@ -58,7 +60,7 @@ export function Header() {
             <a
               href="/cv-mateo-nuskovski.pdf"
               download
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-text-mute hover:text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors text-shadow"
             >
               <Download size={14} />
               {t("downloadCv")}

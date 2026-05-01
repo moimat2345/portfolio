@@ -143,7 +143,7 @@ export function SelectedWork() {
     <SectionWrapper id="work">
       <RevealText
         as="h2"
-        className="text-4xl md:text-5xl font-bold mb-20 gradient-text text-center"
+        className="text-4xl md:text-5xl font-bold mb-20 section-heading text-center"
         wordByWord
       >
         {t("title")}

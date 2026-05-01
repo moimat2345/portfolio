@@ -18,7 +18,7 @@ export function Testimonials() {
       <div ref={ref}>
         <RevealText
           as="h2"
-          className="text-4xl md:text-5xl font-bold mb-16 gradient-text text-center"
+          className="text-4xl md:text-5xl font-bold mb-16 section-heading text-center"
           wordByWord
         >
           {t("title")}
