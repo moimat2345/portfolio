@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Chip } from "@/components/ui/Chip";
 import { TextScramble } from "@/components/ui/TextScramble";
-import { TextHalo } from "@/components/ui/TextHalo";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
 import { ArrowDown, Download, GitCommit } from "lucide-react";
 
@@ -25,6 +24,8 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
+      {/* 3D torusknot lives in the fixed BackgroundScene — no separate canvas here */}
+
       {/* Name */}
       <motion.div
         className="text-center relative z-10"
@@ -32,26 +33,24 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <TextHalo intensity="light" className="rounded-3xl px-6 py-4">
-          <h1 className="text-[clamp(3rem,12vw,16vw)] font-bold leading-[0.82] tracking-[-0.04em]">
-            <motion.span
-              className="block gradient-text"
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <TextScramble text={t("firstName")} className="!font-sans" speed={40} delay={200} />
-            </motion.span>
-            <motion.span
-              className="block text-white"
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <TextScramble text={t("lastName")} className="!font-sans" speed={35} delay={600} />
-            </motion.span>
-          </h1>
-        </TextHalo>
+        <h1 className="text-[clamp(3rem,12vw,16vw)] font-bold leading-[0.82] tracking-[-0.04em]">
+          <motion.span
+            className="block gradient-text"
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <TextScramble text={t("firstName")} className="!font-sans" speed={40} delay={200} />
+          </motion.span>
+          <motion.span
+            className="block text-white"
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <TextScramble text={t("lastName")} className="!font-sans" speed={35} delay={600} />
+          </motion.span>
+        </h1>
       </motion.div>
 
       {/* Tagline */}
@@ -61,14 +60,17 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
       >
-        <TextHalo intensity="medium" className="rounded-xl">
-          <p className="text-xl md:text-2xl text-text-mute leading-relaxed">
-            {t("tagline")}
-          </p>
-          <p className="mt-3 text-sm font-mono text-text-mute">
-            {t("subline")}
-          </p>
-        </TextHalo>
+        <p className="text-xl md:text-2xl text-text-mute leading-relaxed">
+          {t("tagline")}
+        </p>
+        <motion.p
+          className="mt-3 text-sm font-mono text-text-mute"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+        >
+          {t("subline")}
+        </motion.p>
       </motion.div>
 
       {/* CTAs */}

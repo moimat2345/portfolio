@@ -25,7 +25,6 @@ export function Bio() {
             as="h2"
             className="text-4xl md:text-5xl font-bold mb-8 gradient-text"
             wordByWord
-            halo
           >
             {t("title")}
           </RevealText>
@@ -33,7 +32,6 @@ export function Bio() {
             as="p"
             className="text-lg text-text-mute leading-relaxed max-w-2xl"
             delay={0.3}
-            halo
           >
             {t.raw("paragraph").replace(/<\/?strong>/g, "")}
           </RevealText>
