@@ -22,8 +22,8 @@ export async function generateMetadata({
 
   const title = SITE.title;
   const description = isEN
-    ? "French full-stack engineer building autonomous tools for SMBs. Currently based in Bangkok."
-    : "Ingénieur full-stack français construisant des outils autonomes pour les PME. Actuellement basé à Bangkok.";
+    ? "Solo founder building Velora, an AI-native CRM for B2B operators. Based in Bangkok."
+    : "Solo founder, je construis Velora, un CRM IA natif pour opérateurs B2B. Basé à Bangkok.";
 
   return {
     title,

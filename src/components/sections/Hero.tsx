@@ -6,7 +6,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Chip } from "@/components/ui/Chip";
 import { TextScramble } from "@/components/ui/TextScramble";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
-import { ArrowDown, Download, GitCommit } from "lucide-react";
+import { ArrowDown, Download, ExternalLink, GitCommit } from "lucide-react";
 
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -24,8 +24,6 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
-      {/* 3D torusknot lives in the fixed BackgroundScene — no separate canvas here */}
-
       {/* Name */}
       <motion.div
         className="text-center relative z-10"
@@ -80,9 +78,9 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <MagneticButton variant="primary" href="#work">
-          {t("ctaWork")}
-          <ArrowDown size={16} />
+        <MagneticButton variant="primary" href="https://getvelora.info">
+          {t("ctaVelora")}
+          <ExternalLink size={14} />
         </MagneticButton>
         <MagneticButton variant="secondary" href="/cv-mateo-nuskovski.pdf" download>
           <Download size={16} />
@@ -102,8 +100,8 @@ export function Hero() {
             {t("lastCommit")}: {timeAgo(data.lastPush)}
           </Chip>
         )}
-        <Chip pulse>
-          {t("available")}
+        <Chip>
+          {t("building")}
         </Chip>
       </motion.div>
 

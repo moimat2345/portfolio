@@ -1,26 +1,26 @@
 {
   "Nav": {
     "about": "About",
+    "velora": "Velora",
     "stack": "Stack",
     "github": "GitHub",
-    "work": "Work",
-    "process": "Process",
+    "work": "Other builds",
     "contact": "Contact",
     "downloadCv": "Download CV"
   },
   "Hero": {
     "firstName": "Mateo",
     "lastName": "Nuskovski",
-    "tagline": "Full-stack engineer building autonomous tools for SMBs.",
-    "subline": "French. Currently in Bangkok. Available for contracts.",
-    "ctaWork": "See work",
+    "tagline": "Founder & engineer. Building Velora — an AI-native CRM for B2B operators.",
+    "subline": "French. Based in Bangkok. Solo founder, shipping in public.",
+    "ctaVelora": "See Velora",
     "ctaCv": "Download CV",
     "lastCommit": "Last commit",
-    "available": "Available now"
+    "building": "Currently building"
   },
   "Bio": {
     "title": "About",
-    "paragraph": "French engineer based in Bangkok. I build AI-driven automation for SMBs that lose hours on email, customer ops, and admin. Currently shipping Velora — a CRM that runs itself. Background in Next.js, FastAPI, AWS, and applied LLMs (Claude, Gemini, GPT-4o).",
+    "paragraph": "Solo founder and engineer based in Bangkok. Self-taught — passed the French Baccalauréat as an independent candidate, currently top 5 of my cohort at 42 Bangkok. Building Velora to fix the email/CRM chaos I saw firsthand while working operations at a small business in Phuket. Shipping in public on Next.js, FastAPI, AWS, and applied LLMs.",
     "yearsCoding": "Years coding full-time",
     "languages": "Languages",
     "fr": "French (native)",
@@ -30,6 +30,13 @@
     "timezoneValue": "ICT (UTC+7)",
     "currentProject": "Currently building",
     "currentProjectValue": "Velora"
+  },
+  "Velora": {
+    "title": "Currently Building",
+    "name": "Velora",
+    "status": "Live · production · first paying customer",
+    "pitch": "AI-native CRM for B2B operators. Ingests inbox, web reviews, and supplier comms. Drafts responses with LLMs, escalates only when needed.",
+    "cta": "See Velora"
   },
   "Stack": {
     "title": "Stack & Skills",
@@ -42,14 +49,7 @@
     "streak": "Streak"
   },
   "Work": {
-    "title": "Selected Work",
-    "velora": {
-      "name": "Velora",
-      "tag": "Live · production · B2B",
-      "subtitle": "AI-native CRM for B2B operators",
-      "problem": "SMBs lose hours daily replying to suppliers, customers, and reviews. Existing CRMs need a human in the loop for every step.",
-      "solution": "A self-driving CRM that ingests inbox + web reviews + supplier comms, drafts responses with LLMs, escalates only when needed."
-    },
+    "title": "Other builds",
     "autoPush": {
       "name": "auto_push",
       "tag": "Open source · Rust",
@@ -72,37 +72,8 @@
       "solution": "Raspberry Pi + touchscreen. Displays current track cover. Tap to play/pause, double-tap sides for prev/next. Desktop version also available."
     }
   },
-  "Process": {
-    "title": "How I work",
-    "step1": {
-      "title": "Discovery call",
-      "duration": "30min, free",
-      "description": "Understand your current process and identify where hours are bleeding."
-    },
-    "step2": {
-      "title": "Audit & proposal",
-      "duration": "~1 week",
-      "description": "Technical doc, scope, estimate, timeline."
-    },
-    "step3": {
-      "title": "Build MVP",
-      "duration": "4–6 weeks",
-      "description": "Weekly demos, shared Linear/Notion, full transparency."
-    },
-    "step4": {
-      "title": "Iteration & handoff",
-      "duration": "included",
-      "description": "Documentation, training, 30 days of support."
-    }
-  },
-  "Testimonials": {
-    "title": "What clients say",
-    "quote": "Mateo shipped our CRM automation in 5 weeks. We went from drowning in supplier emails to having drafts ready every morning. Best ROI we've had on a tech contract.",
-    "author": "CEO, B2B distributor (Bangkok)",
-    "placeholder": "Placeholder"
-  },
   "Contact": {
-    "headline": "Got a process bleeding hours? Let's automate it.",
+    "headline": "Building something with AI for B2B? Let's talk.",
     "ctaEmail": "Get in touch",
     "ctaCal": "Book a call",
     "ctaCv": "Download CV"

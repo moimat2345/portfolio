@@ -151,19 +151,6 @@ export function SelectedWork() {
 
       <div className="space-y-32">
         <ProjectCard
-          name={t("velora.name")}
-          tag={t("velora.tag")}
-          subtitle={t("velora.subtitle")}
-          problem={t("velora.problem")}
-          solution={t("velora.solution")}
-          stack={[
-            "Next.js", "FastAPI", "AWS EC2", "Supabase",
-            "Microsoft Graph", "Telegram", "Claude API", "Gemini", "Stripe",
-          ]}
-          url="velora.app"
-        />
-
-        <ProjectCard
           name={t("autoPush.name")}
           tag={t("autoPush.tag")}
           subtitle={t("autoPush.subtitle")}

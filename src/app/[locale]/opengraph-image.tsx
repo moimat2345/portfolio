@@ -58,8 +58,8 @@ export default async function OGImage({
             }}
           >
             {isEN
-              ? "Full-stack engineer building autonomous tools for SMBs."
-              : "Ingénieur full-stack construisant des outils autonomes pour les PME."}
+              ? "Founder @ Velora — AI-native CRM for B2B operators."
+              : "Founder @ Velora — CRM IA natif pour opérateurs B2B."}
           </div>
           <div
             style={{

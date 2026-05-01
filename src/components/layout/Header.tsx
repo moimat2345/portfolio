@@ -16,10 +16,10 @@ export function Header() {
 
   const navLabels: Record<string, string> = {
     About: t("about"),
+    Velora: t("velora"),
     Stack: t("stack"),
     GitHub: t("github"),
     Work: t("work"),
-    Process: t("process"),
     Contact: t("contact"),
   };
 

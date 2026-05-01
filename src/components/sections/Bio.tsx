@@ -69,13 +69,16 @@ export function Bio() {
             <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
               <TextScramble text={t("currentProject")} trigger={isInView} delay={800} />
             </p>
-            <motion.p
-              className="text-lg font-bold gradient-text"
+            <motion.a
+              href="https://getvelora.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold gradient-text hover:opacity-80 transition-opacity"
               animate={isInView ? { scale: [1, 1.05, 1] } : {}}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              {t("currentProjectValue")}
-            </motion.p>
+              {t("currentProjectValue")} ↗
+            </motion.a>
           </div>
         </TiltCard>
       </div>

@@ -1,8 +1,8 @@
 export const SITE = {
   name: "Mateo Nuskovski",
-  title: "Mateo Nuskovski — AI-driven engineer",
+  title: "Mateo Nuskovski — Founder @ Velora",
   description:
-    "French full-stack engineer building autonomous tools for SMBs. Currently based in Bangkok.",
+    "Solo founder building Velora, an AI-native CRM for B2B operators. Based in Bangkok.",
   url: "https://mateonuskovski.com",
   github: "moimat2345",
   email: "hello@mateonuskovski.com",
@@ -23,10 +23,10 @@ export const PALETTE = {
 
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Velora", href: "#velora" },
   { label: "Stack", href: "#stack" },
   { label: "GitHub", href: "#github" },
   { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
