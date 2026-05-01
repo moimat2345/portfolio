@@ -14,7 +14,7 @@ function StackIcon({ name }: { name: string }) {
   return (
     <MagneticIcon>
       <motion.div
-        className="flex items-center gap-2 px-5 py-3 bg-black/30 backdrop-blur-xl border border-white/[0.08] rounded-xl whitespace-nowrap group cursor-default transition-all duration-300 hover:border-violet/40 hover:bg-black/40"
+        className="flex items-center gap-2 px-5 py-3 bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] rounded-xl whitespace-nowrap group cursor-default transition-all duration-300 hover:border-violet/40 hover:bg-white/[0.08]"
         whileHover={{
           boxShadow: "0 0 30px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.1)",
           borderColor: "rgba(139, 92, 246, 0.4)",
