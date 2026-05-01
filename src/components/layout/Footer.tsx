@@ -22,7 +22,7 @@ export function Footer() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <footer ref={ref} className="border-t border-white/[0.06] py-8 px-6 md:px-12 text-shadow">
+    <footer ref={ref} className="border-t border-white/[0.06] py-8 px-6 md:px-12">
       <motion.div
         className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"
         initial={{ opacity: 0 }}

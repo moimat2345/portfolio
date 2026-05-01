@@ -28,7 +28,7 @@ export function Contact() {
       <div ref={ref}>
         <RevealText
           as="h2"
-          className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight max-w-4xl mx-auto mb-16 section-heading"
+          className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight max-w-4xl mx-auto mb-16 gradient-text"
           wordByWord
         >
           {t("headline")}

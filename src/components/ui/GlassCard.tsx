@@ -13,7 +13,7 @@ export function GlassCard({ children, className, hover = false }: GlassCardProps
   return (
     <motion.div
       className={cn(
-        "glass rounded-2xl p-6 bg-zinc-950/85",
+        "glass rounded-2xl p-6",
         hover && "transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:border-white/[0.15]",
         className
       )}

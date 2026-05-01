@@ -7,8 +7,8 @@
   --violet: #8b5cf6;
   --magenta: #ec4899;
   --cyan: #06b6d4;
-  --glass-bg: rgba(9, 9, 14, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --text: #ffffff;
   --text-mute: rgba(255, 255, 255, 0.6);
 }
@@ -68,11 +68,11 @@ body {
   top: 0;
 }
 
-/* Glass card base — opaque enough to read over 3D */
+/* Glass card base */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
 }
 
@@ -82,25 +82,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* Text shadow utilities for readability over 3D */
-.text-shadow {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-.text-shadow-strong {
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9);
-}
-
-.text-shadow-hero {
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-/* Section heading style — always readable */
-.section-heading {
-  color: #ffffff;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* Reduced motion */

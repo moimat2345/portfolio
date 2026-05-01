@@ -53,7 +53,7 @@ export function TiltCard({ children, className, glareColor = "rgba(139,92,246,0.
     <div
       ref={ref}
       className={cn(
-        "glass rounded-2xl p-6 relative overflow-hidden will-change-transform bg-zinc-950/85",
+        "glass rounded-2xl p-6 relative overflow-hidden will-change-transform",
         "transition-[box-shadow] duration-300 hover:shadow-[0_20px_60px_rgba(139,92,246,0.1)]",
         className
       )}

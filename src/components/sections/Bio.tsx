@@ -23,14 +23,14 @@ export function Bio() {
         <div>
           <RevealText
             as="h2"
-            className="text-4xl md:text-5xl font-bold mb-8 section-heading"
+            className="text-4xl md:text-5xl font-bold mb-8 gradient-text"
             wordByWord
           >
             {t("title")}
           </RevealText>
           <RevealText
             as="p"
-            className="text-lg text-text-mute leading-relaxed max-w-2xl text-shadow"
+            className="text-lg text-text-mute leading-relaxed max-w-2xl"
             delay={0.3}
           >
             {t.raw("paragraph").replace(/<\/?strong>/g, "")}
@@ -40,15 +40,15 @@ export function Bio() {
         <TiltCard className="space-y-6">
           {/* Years coding with animated counter */}
           <div data-animate>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
               <TextScramble text={t("yearsCoding")} trigger={isInView} delay={200} />
             </p>
-            <p className="text-4xl font-bold text-white">
-              <AnimatedCounter target={yearsCoding} trigger={isInView} />
+            <p className="text-4xl font-bold gradient-text">
+              <AnimatedCounter target={yearsCoding} suffix="+" trigger={isInView} />
             </p>
           </div>
           <div data-animate>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
               <TextScramble text={t("languages")} trigger={isInView} delay={400} />
             </p>
             <p className="text-sm">
@@ -58,13 +58,13 @@ export function Bio() {
             </p>
           </div>
           <div data-animate>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
               <TextScramble text={t("timezone")} trigger={isInView} delay={600} />
             </p>
             <p className="text-sm font-mono">{t("timezoneValue")}</p>
           </div>
           <div data-animate>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-mono text-text-mute uppercase tracking-wider mb-1">
               <TextScramble text={t("currentProject")} trigger={isInView} delay={800} />
             </p>
             <motion.p

@@ -16,8 +16,7 @@ function ChromeTorusKnot({ mouseRef }: { mouseRef: React.MutableRefObject<{ x: n
 
   useFrame((_, delta) => {
     if (!meshRef.current) return;
-    // Option A: slowed down by 3x for readability
-    meshRef.current.rotation.y += delta * 0.05;
+    meshRef.current.rotation.y += delta * 0.15;
     meshRef.current.rotation.x = lerp(meshRef.current.rotation.x, mouseRef.current.y * 0.3, 0.05);
     meshRef.current.rotation.z = lerp(meshRef.current.rotation.z, mouseRef.current.x * 0.15, 0.05);
   });
@@ -66,9 +65,8 @@ function ChromeShape({ pos, scale, speed, geo }: typeof SHAPES[0]) {
 
   useFrame((state) => {
     if (!meshRef.current) return;
-    // Slowed down by 3x for readability
-    meshRef.current.rotation.x = state.clock.elapsedTime * speed * 0.15;
-    meshRef.current.rotation.y = state.clock.elapsedTime * speed * 0.1;
+    meshRef.current.rotation.x = state.clock.elapsedTime * speed * 0.5;
+    meshRef.current.rotation.y = state.clock.elapsedTime * speed * 0.3;
     // Gentle float
     meshRef.current.position.y = initialY + Math.sin(state.clock.elapsedTime * speed + pos[0]) * 0.3;
   });
@@ -120,7 +118,7 @@ function Grid() {
   useFrame((state) => {
     if (!gridRef.current) return;
     // Slow drift forward
-    gridRef.current.position.z = (state.clock.elapsedTime * 0.1) % 1;
+    gridRef.current.position.z = (state.clock.elapsedTime * 0.3) % 1;
   });
 
   return (
@@ -141,8 +139,8 @@ function WireframeRing({ position, scale, speed }: { position: [number, number, 
 
   useFrame((state) => {
     if (!ref.current) return;
-    ref.current.rotation.x = state.clock.elapsedTime * speed * 0.1;
-    ref.current.rotation.z = state.clock.elapsedTime * speed * 0.07;
+    ref.current.rotation.x = state.clock.elapsedTime * speed * 0.3;
+    ref.current.rotation.z = state.clock.elapsedTime * speed * 0.2;
   });
 
   return (

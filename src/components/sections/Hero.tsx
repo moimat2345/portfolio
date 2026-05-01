@@ -33,7 +33,7 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-[clamp(3rem,12vw,16vw)] font-bold leading-[0.82] tracking-[-0.04em] text-shadow-hero">
+        <h1 className="text-[clamp(3rem,12vw,16vw)] font-bold leading-[0.82] tracking-[-0.04em]">
           <motion.span
             className="block gradient-text"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -60,11 +60,11 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
       >
-        <p className="text-xl md:text-2xl text-text-mute leading-relaxed text-shadow-hero">
+        <p className="text-xl md:text-2xl text-text-mute leading-relaxed">
           {t("tagline")}
         </p>
         <motion.p
-          className="mt-3 text-sm font-mono text-text-mute text-shadow-hero"
+          className="mt-3 text-sm font-mono text-text-mute"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}

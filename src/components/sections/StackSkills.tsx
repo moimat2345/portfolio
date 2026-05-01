@@ -14,13 +14,13 @@ function StackIcon({ name }: { name: string }) {
   return (
     <MagneticIcon>
       <motion.div
-        className="flex items-center gap-2 px-5 py-3 bg-zinc-900/90 backdrop-blur-md border border-white/[0.15] rounded-xl whitespace-nowrap group cursor-default transition-all duration-300 hover:border-violet/40 hover:bg-zinc-800/90"
+        className="flex items-center gap-2 px-5 py-3 glass rounded-xl whitespace-nowrap group cursor-default transition-all duration-300 hover:border-violet/40 hover:bg-white/[0.06]"
         whileHover={{
           boxShadow: "0 0 30px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.1)",
           borderColor: "rgba(139, 92, 246, 0.4)",
         }}
       >
-        <span className="text-sm text-white group-hover:text-white transition-colors duration-300 group-hover:drop-shadow-[0_0_12px_rgba(139,92,246,0.8)]">
+        <span className="text-sm text-text-mute group-hover:text-white transition-colors duration-300 group-hover:drop-shadow-[0_0_12px_rgba(139,92,246,0.8)]">
           {name}
         </span>
       </motion.div>
@@ -49,7 +49,7 @@ export function StackSkills() {
       <div ref={ref}>
         <RevealText
           as="h2"
-          className="text-4xl md:text-5xl font-bold mb-16 section-heading text-center"
+          className="text-4xl md:text-5xl font-bold mb-16 gradient-text text-center"
           wordByWord
         >
           {t("title")}
