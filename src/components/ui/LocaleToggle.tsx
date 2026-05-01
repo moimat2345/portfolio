@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -14,11 +14,7 @@ export function LocaleToggle({ className }: { className?: string }) {
 
   const switchLocale = (newLocale: string) => {
     if (newLocale === locale) return;
-
-    // Strip current locale prefix and add new one
-    const pathWithoutLocale = pathname.replace(/^\/(en|fr)/, "") || "/";
-    const newPath = newLocale === "en" ? pathWithoutLocale : `/${newLocale}${pathWithoutLocale}`;
-    router.push(newPath);
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
