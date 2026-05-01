@@ -23,7 +23,7 @@ function ChromeTorusKnot({ mouseRef }: { mouseRef: React.MutableRefObject<{ x: n
 
   return (
     <Float speed={1.5} floatIntensity={0.5} rotationIntensity={0.2}>
-      <mesh ref={meshRef} scale={1.4} position={[0, 0, 0]}>
+      <mesh ref={meshRef} scale={1} position={[0, 0, 0]}>
         <torusKnotGeometry args={[1, 0.3, 100, 24]} />
         <meshPhysicalMaterial
           metalness={1}
@@ -47,16 +47,24 @@ const SHAPES = [
   { pos: [5.5, -1.5, -5] as [number, number, number], scale: 0.3, speed: 0.4, geo: "icosahedron" },
   { pos: [-3, -3, -8] as [number, number, number], scale: 0.5, speed: 0.2, geo: "dodecahedron" },
   { pos: [4, 3, -7] as [number, number, number], scale: 0.25, speed: 0.5, geo: "octahedron" },
+  { pos: [2, 1.5, -5.5] as [number, number, number], scale: 0.15, speed: 0.45, geo: "tetrahedron" },
+  { pos: [-7, -1, -7] as [number, number, number], scale: 0.35, speed: 0.25, geo: "icosahedron" },
   // Mid-depth
   { pos: [-6, 0, -4] as [number, number, number], scale: 0.2, speed: 0.6, geo: "tetrahedron" },
   { pos: [6, -2, -4] as [number, number, number], scale: 0.15, speed: 0.7, geo: "icosahedron" },
   { pos: [0, 4, -5] as [number, number, number], scale: 0.2, speed: 0.35, geo: "dodecahedron" },
   { pos: [0, -4.5, -6] as [number, number, number], scale: 0.35, speed: 0.25, geo: "octahedron" },
+  { pos: [-4, 2.5, -4.5] as [number, number, number], scale: 0.12, speed: 0.55, geo: "octahedron" },
+  { pos: [7, 1, -5.5] as [number, number, number], scale: 0.18, speed: 0.4, geo: "dodecahedron" },
+  { pos: [-2, -2, -3.5] as [number, number, number], scale: 0.1, speed: 0.65, geo: "tetrahedron" },
   // Far field — smaller, more scattered
   { pos: [-8, 3, -10] as [number, number, number], scale: 0.6, speed: 0.15, geo: "icosahedron" },
   { pos: [8, -3, -10] as [number, number, number], scale: 0.5, speed: 0.2, geo: "dodecahedron" },
   { pos: [-4, -5, -12] as [number, number, number], scale: 0.7, speed: 0.1, geo: "octahedron" },
   { pos: [3, 5, -11] as [number, number, number], scale: 0.4, speed: 0.18, geo: "tetrahedron" },
+  { pos: [-6, -4, -9] as [number, number, number], scale: 0.45, speed: 0.12, geo: "icosahedron" },
+  { pos: [5, 4, -9.5] as [number, number, number], scale: 0.35, speed: 0.22, geo: "octahedron" },
+  { pos: [0, -6, -11] as [number, number, number], scale: 0.55, speed: 0.14, geo: "dodecahedron" },
 ];
 
 function ChromeShape({ pos, scale, speed, geo }: typeof SHAPES[0]) {
