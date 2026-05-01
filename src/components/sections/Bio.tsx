@@ -55,6 +55,8 @@ export function Bio() {
               🇫🇷 {t("fr")}
               <br />
               🇬🇧 {t("en")}
+              <br />
+              🇩🇪 {t("de")}
             </p>
           </div>
           <div data-animate>
